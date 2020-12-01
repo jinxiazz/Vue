@@ -1,0 +1,56 @@
+没有模块化会出现的问题：
+    1、变量名冲突
+        解决方案：可以定义一个自调用函数，让变量变成局部变量
+        缺：变量复用性不高，局部变量只能在当前作用域有效
+    2、多个js文件时，引入顺序会影响代码执行
+    3、解决闭包带来的问题
+        3.1 导出：定义一个对象，这个对象包含后续所需要的内容，并返回这个对象
+        3.2 导入：在需要用到的地方则使用对象. 去调用
+        导入导出就是模块化的雏形，以对象的形式导入导出是es5的方法，es5没有模块化的哟
+常用模块化规范：
+    CommonJs AMD CMD ES6中的Modules
+模块化的两个核心：
+    导入  导出
+
+webpack：是一个现代js应用的静态模块/打包工具，也会自动处理模块间的依赖关系。
+    依赖node运行，node环境以来各种包，所以就有npm,npm是一个包管理工具
+安装：
+    全局：npm install webpack@3.6.0 -g
+    局部：npm install webpack@3.6.0 --save-dev
+    本地：npm install vue --save
+打包：
+    webpack 打包js  打包后的js
+
+乱七八糟的命令：
+    卸载：npm uninstall 包名
+    安装依赖包：npm  install
+    更新：
+        npm  -g  update  包名  #  全局更新
+        npm  update  包名  #  本地更新
+    执行脚本：
+        npm  run  命令名  在package.json的scripts中定义的脚本命令
+
+vue编译环境：
+    runtime-only : 代码中，不可以有任何的template
+    runtime-compiler : 代码中，可以有template，compiler可以用于编译template
+修改编译环境：
+    在webpack.config.js文件中添加配置指定vue的文件
+
+el和template的关系:
+    一般项目中只有一个index.html页面，我们不能频繁的去修改它，那怎么实现内容显示呢？
+    vue实例中也可以有template属性去定义模板，当el和template同时存在时，那么vue内部会自动将template的模板覆盖el的内容
+
+vue打包loader
+    npm install vue-loader vue-template-compiler --save-dev
+
+plugin：是一个插件，对webpack本身的一个扩充，是一个扩张器
+loader: 主要用于转换某些类型的模块，是一个转换器
+插件：
+    版权声明：BannerPlugin  自带的
+    打包html插件：HtmlWebpackPlugin   安装
+    js压缩插件：uglifyjs@1.1.1    安装   指定版本1.1.1 与CLI2一致
+    搭建本地服务器：基于node.js搭建，内部是使用了express框架，可以实现让浏览器自动刷新显示我们修改代码后的结果
+        安装：webpack-dev-server@2.9.3
+
+配置文件合并
+    npm install webpack-merge@4.1.5 --save-dev    记得去package.json文件配置指定运行的配置文件

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>{{message}}</div>
+    <test2></test2>
+</div>
+
+<template id="test2">
+    <div>
+        <h1>组件分离写法-template标签</h1>
+        <h1>{{message}}</h1>
+    </div>
+</template>
+
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    /*
+    * 1、组件无法访问vue实例中的数据，组件中有一个data属性是用于存放组件中所要使用到的数据的，
+    * 2、组件中的data必须是一个函数，必须要返回一个对象，对象中保存数据
+    * 3、组件是一个单独的模块，也可以有属于自己的data以及method等
+    * */
+    //1、注册一个全局组件
+    Vue.component("test2",{
+        template:"#test2",
+        data(){
+            return{
+                message: "哈哈哈"
+            }
+        }
+    })
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！"
+        }
+    })
+</script>
+</body>
+</html>

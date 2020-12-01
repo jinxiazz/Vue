@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <test1></test1>
+    <test2></test2>
+    <test2></test2>
+</div>
+<div id="app2">
+    <test1></test1>
+</div>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    /*
+    * 语法糖：主要省去了Vue.extend() 这一步，而是直接使用一个对象代替
+    * */
+    //1、全局组件注册语法糖
+    //1、创建组件构造器
+   /* const test1=Vue.extend({
+        template: `
+                <h1>第一个组件</h1>
+            `
+    });*/
+    //2、注册全局组件
+    // Vue.component("test1",test1);
+    //语法糖
+    Vue.component("test1",{
+        template: `
+                <h1>第一个组件</h1>
+            `
+    });
+
+    //root 根组件
+    const vue=new Vue({
+        el:"#app",
+        date:{
+            message:"你好！！"
+        },
+        components: {
+            // test1:test1,
+            /*局部组件语法糖*/
+            test2:{
+                template: `
+                <h1>局部组件语法糖</h1>
+            `
+            }
+        }
+    })
+    const vue2=new Vue({
+        el:"#app2",
+        date:{
+            message:"你好！！"
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--父组件模板-->
+<div id="app">
+    <!--2、父组件监听自定义事件
+            注意：
+                1、监听自定义事件的名称必须和发送事件的名称完全一致，区分大小写
+                2、监听自定义事件的第一个参数默认接收发送事件的参数
+    -->
+    <test1 @item-click="itemClick"></test1>
+</div>
+
+<!--子组件模板-->
+<template id="test1">
+    <div>
+        <button v-for="item in product"
+                @click="itemClick(item)">
+            {{item.productName}}
+        </button>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    //子组件
+    const test1={
+        template:"#test1",
+        data(){
+            return {
+                product:[
+                    {id:"aaa",productName:"热门商品"},
+                    {id:"bbb",productName:"家用电器"},
+                    {id:"ccc",productName:"手机数码"},
+                    {id:"ddd",productName:"母婴用品"},
+                ]
+            }
+        },
+        methods:{
+            itemClick(item){
+                //1、$emit(事件名称,参数)  子组件发送自定义事件
+                this.$emit("item-click",item)
+            }
+        }
+    }
+
+    //父组件
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！"
+        },
+        components:{
+            test1
+        },
+        methods: {
+            itemClick(item){
+                console.log("子组件点击了...",item)
+            }
+        }
+    })
+</script>
+</body>
+</html>

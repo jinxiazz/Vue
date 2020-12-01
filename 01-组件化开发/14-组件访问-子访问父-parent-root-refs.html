@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <test></test>
+</div>
+<template id="cpn">
+    <div>
+        <h1>我是cpn组件</h1>
+        <ccpn></ccpn>
+    </div>
+</template>
+<template id="ccpn">
+    <div>
+        <h1>我是ccpn组件</h1>
+        <button @click="btnClick">点击</button>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！",
+            name:"我是vue实例中的name"
+        },
+        components:{
+            test:{
+                template:"#cpn",
+                data(){
+                    return {
+                        name:"我是test中的name"
+                    }
+                },
+                methods: {
+                  showTime(){
+                      console.log(new Date())
+                  }
+                },
+                components:{
+                    ccpn:{
+                        template: "#ccpn",
+                        methods:{
+                            btnClick(){
+                                //1、访问父组件  $parent   对象  不常用
+                                console.log(this.$parent);
+                                console.log(this.$parent.name);
+                                this.$parent.showTime();
+
+                                //2、访问根组件  $root  对象  不常用
+                                console.log(this.$root);
+                                console.log(this.$root.name);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

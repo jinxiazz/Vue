@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    <test1 :tlist="list" :tmessage="message"></test1>-->
+    <test1 :tmessage="message"></test1>
+</div>
+<template id="test1">
+    <div>
+        <p>{{tlist}}</p>
+        <h1>{{tmessage}}</h1>
+        <ul>
+            <li v-for="item in tlist">{{item}}</li>
+        </ul>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    //父传子：props
+    const test1={
+        template:"#test1",
+        //1、字符串数组方式：数组中的元素是在子组件中使用的变量名 注：记得要使用v-bind:变量名="vue实例中子组件要使用的数据"
+        // props:["tlist","tmessage"],
+        //2、对象方式 常用
+        props:{
+            //1、类型限制
+            // tlist:Array,
+            // tmessage:String
+
+            //2、提供默认值 以及 必填值
+            tmessage:{
+                type:String,
+                default:"这是一个默认值",
+                required:true
+            },
+
+            //3、数组类型时，默认值必须是一个函数 然后再返回
+            tlist:{
+                type:Array,
+                default(){
+                    return [11,22]
+                },
+            }
+        },
+        data(){
+            return {}
+        }
+    }
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！",
+            list:["篮球","乒乓球","羽毛球"]
+        },
+        components:{
+            test1
+        }
+    })
+</script>
+</body>
+</html>

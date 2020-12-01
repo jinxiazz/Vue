@@ -1,0 +1,46 @@
+CLI 脚手架：快速搭建Vue开发环境以及对应的webpack配置
+使用前提：
+    1、node.js 8.9以上
+        npm 包管理工具，已经成为了非官方的发布node模块包的标准/cnpm 使用国内淘宝镜像
+    2、webpack
+
+安装：
+    cli3：npm install -g @vue/cli
+    在cli3的基础上拉取cli2模板：
+        npm install @vue/cli-init -g
+创建项目：
+    cli2：
+        vue init webpack 项目名称文件夹
+            Project name：项目名称
+            Project description：项目描述
+            Author：作者
+    cli3：
+        vue create 项目名称文件夹
+
+cli3与cli2有很大的区别：
+    1、cli3是基于webpack4打造，cli2是基于webpack3
+    2、cli3设计原则是‘0配置’，移除了配置文件根目录下的 build 和 config 等目录
+    3、cli3提供了vue ui 命令，提供了可视化配置
+    4、移除了static文件夹，新增了public文件夹，将index.html移动到了public中
+
+cli3配置去哪了？
+    1、启动配置服务器  vue ui
+    2、node_modules中的@vue的cli-service中的lib的service.js中查看
+    3、在根目录创建一个vue.config.js文件中自定义配置 起别名
+
+vue编译环境：
+    1、runtime-only : 代码中，不可以有任何的template
+        //render->virtual dom->真实dom
+        1、性能更高
+        2、代码量少
+        没有template编译的过程，那么.vue文件中的template是由谁处理的呢？
+            是由vue-template-compiler处理的，处理后返回render函数。
+            运行时也不需要去编译template了，提高了代码的执行速度。所有推荐用only
+    2、runtime-compiler : 代码中，可以有template，compiler可以用于编译template
+        //template->ast->render->virtual dom->真实dom
+
+
+vue程序运行过程：
+    template->ast->render->virtual dom->真实dom
+
+

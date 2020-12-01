@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--可以显示  因为父组件中的isShow是true-->
+    <cpn v-show="isShow"></cpn>
+</div>
+<template id="cpn">
+    <div>
+        <h1>父组件的所有东西都会在父级作用域中编译，子组件的所有东西都会在子级作用域中编译</h1>
+        <!--不可以显示  因为子组件中的isShow是false-->
+        <button v-show="isShow">按钮</button>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！",
+            isShow:true
+        },
+        components:{
+            cpn:{
+                template:"#cpn",
+                data(){
+                    return {
+                        isShow: false
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

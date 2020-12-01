@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <test1></test1>
+    <test2></test2>
+</div>
+
+<!--1、使用script标签，类型必须是 text/x-template 给一个id可以找到它 -->
+<script type="text/x-template" id="test1">
+    <h1>组件分离写法-script标签</h1>
+</script>
+
+<!--2、使用 template标签 给一个id可以找到它-->
+<template id="test2">
+    <h1>组件分离写法-template标签</h1>
+</template>
+
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    //1、注册一个全局组件
+    Vue.component("test1",{
+        template:"#test1",
+    });
+    Vue.component("test2",{
+        template:"#test2",
+    })
+    const vue=new Vue({
+        el:"#app",
+        date:{
+            message:"你好！！"
+        }
+    })
+</script>
+</body>
+</html>

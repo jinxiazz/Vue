@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 3、使用组件 -->
+        <aa></aa>
+        <aa></aa>
+        <aa></aa>
+        <aa></aa>
+        <aa></aa>
+    </div>
+    <script src="../lib/vue-2.4.0.js"></script>
+    <script>
+        //1、定义组件构造器对象
+        const test=Vue.extend({
+            template: `
+                <h1>123123</h1>
+            `
+        });
+        //2、创建组件  component(组件标签名,组件构造器对象)
+        Vue.component("aa", test);
+
+        const vue=new Vue({
+            el:"#app",
+            date:{
+                message:"你好！！"
+            }
+        })
+    </script>
+</body>
+</html>

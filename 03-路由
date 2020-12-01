@@ -1,0 +1,104 @@
+前端渲染、前端路由、后端渲染:
+1、后端渲染(服务端渲染)：jsp/php
+    浏览器发送请求后，后端经过一系列处理后生成一个完整的页面并返回在浏览器中显示，只有html+css
+    后端路由：后端处理URL和页面之间的映射关系
+    缺点：
+        1、整个页面都是后端人员写的，维护和开发麻烦
+        2、html和后端数据写在一起，代码冗余
+2、前端渲染(前后端分离)：后端只负责提供数据，不负责任何阶段的内容
+    浏览器中显示的网页中的大部分内容，都是由前端写的js代码(ajax)在浏览器中执行，最终渲染出来的页面
+3、前端路由(单页面[SPA]富应用):
+    SPA：整个网页只有一个html页面，需要前端路由做支撑
+    前端路由：URL和组件之间的映射关系
+
+前端三大框架都有自己的路由实现：
+    Angular   ngRouter
+    React     ReactRouter
+    Vue       vue-router
+
+vue-router 路由：(路由和转发)
+    是vue.js官方路由插件，和vue深度集成，适用于构建单页面应用。
+    用于设定访问路径，将路径和组件映射起来
+使用：
+    1、安装 npm install vue-router --save
+    2、导入路由对象，并且调用Vue.use(VueRouter)进行注册
+    3、创建路由实例，并且传入路由映射配置
+    4、在Vue实例中挂载创建的路由实例
+
+url和组件的映射关系：
+    1、创建路由组件
+    2、配置路由映射关系
+        改变路径的两种方式：
+            2.1 url的hash   默认
+            2.2 HTML5的history  如果希望使用该模式则需要在r     outer里面配置一下 mode:'history'
+    3、使用路由：通过<router-link>和<router-view>
+        <router-link>
+            是路由中内置的组件，最终会被渲染成一个a标签
+            属性：
+                to="跳转的指定路径"
+                tag="改变最终渲染成的标签"
+                replace  不会留下history记录
+                active-class="类名" : 当<router-link>对应路由成功时，会自动给当前元素设置一个router-link-active
+                的类名，active-class可以修改默认class。如果有多个标签都需要修改，可以在router里面配置一下linkActiveClass
+        跳转组件方式2：
+            给自定义标签添加事件，vue-router在每一个组件中都添加了$router这个对象，
+            $router下有两个方法  push("/home")  replace("/home")
+        <router-view>
+            是一个占位符，会根据当前路径动态渲染出不同的组件
+
+动态路由：
+    使用v-bind绑定设置动态路由   /user/admin
+    $.route：可以返回当前正在使用的组件, $.route.params.userId 可以拿到当前正在使用的组件的参数
+        可以通过计算属性，也可以直接写插值表达式
+    $router：代表路由对象
+
+为什么要用路由懒加载？
+    当我们打包构建项目时，会将我们写的所有js代码放在一个js文件里，第一次发送请求
+    文件时，文件过大，可能就需要花费一些时间，还可能会导致用户看到的页面会出现短暂
+    的空白情况，所以我们就可以使用路由懒加载解决这类问题
+
+路由懒加载：用到时再加载
+    将路由对应的组件打包成一个个js文件，当指定路由被访问时，才加载对应的组件。
+    提高了页面加载的速度以及用户体验更好了
+
+实现路由懒加载的三种方式：
+    1、结合Vue的异步组件和Webpack的代码分析
+        const Home=resolve=>{require.ensure(['../components/Home.vue'],()=>{
+            resolve(require('../components/Home.vue'))
+        })}
+    2、AMD写法
+        const About =resolve=>require(['../components/About.vue'],resolve)
+    3、ES6写法，简写Vue异步组件和Webpack的代码
+        const Home=()=>import('../components/Home.vue')
+
+嵌套路由：
+    1、创建对应的子组件，并且在路由映射中配置对应的子路由 children:[]  子路由中的path不用加/
+    2、在父组件中使用<router-view>标签
+
+路由的参数传递：
+    单个参数：
+        直接在路径后拼接，使用$route.params获取
+    多个参数：
+        1、<router-link>标签中的to属性可以是一个对象，{path:'路径',query:{参数}}
+        2、可以调用$router.push({path:'路径',query:{参数}})
+
+全局导航守卫：在一个SPA应用中，动态改变网页的标题
+    作用：监听路由的进入和离开，提供了beforeEach和afterEach两个钩子函数，它们会在路由
+    即将改变前和改变后触发
+    beforeEach(fn(to,from,next){})
+    afterEach(fn(to,from){})
+    参数解析：
+        to：即将要进入的目标的路由对象
+        from：当前导航即将要离开的路由对象
+        next：调用该方法后，才可以进入下一个钩子
+    meta：元数据[描述数据的数据]
+    guard：守卫
+    hook：钩子
+
+路由独享守卫/组件内守卫    官网学习...
+
+keep-alive和vue-router：
+keep-alive：是vue内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染
+router-view：也是一个组件，如果被包在keep-alive中，所有路径匹配到的视图组件都会被缓存
+
+

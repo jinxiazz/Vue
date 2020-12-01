@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+    <cpn>
+        <template slot-scope="slot">
+            <p>{{slot.data.join(" - ")}}</p>
+        </template>
+    </cpn>
+    <cpn>
+        <template slot-scope="slot">
+            <p>{{slot.data.join(" ** ")}}</p>
+        </template>
+    </cpn>
+</div>
+<template id="cpn">
+    <div>
+        <!--
+        作用域插槽：父组件替换插槽中的标签，内容由子组件提供
+            1、给子组件中的添加一个data属性(属性名可以自己起)将languages传递
+            2、在父组件中给指定标签添加 slot-scope属性="slot"  这里的slot是用于接收子组件传递过来的插槽对象 里面包含data
+        -->
+        <slot :data="languages">
+            <ul>
+                <li v-for="item in languages">{{item}}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+<script src="../lib/vue.js"></script>
+<script>
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！"
+        },
+        components:{
+            cpn:{
+                template:"#cpn",
+                data(){
+                    return {
+                        languages:["java","javascript","c++","c#","go"]
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

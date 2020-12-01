@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<!--
+script 标签中的type属性为module时，那这个js文件此时就变成单独的一个模块了，所以不会出现变量名冲突，
+如果别的js文件要使用指定变量则就需要导入导出了  模块化
+-->
+<script src="aaa.js" type="module"></script>
+<script src="bbb.js" type="module"></script>
+<script src="ccc.js" type="module"></script>
+</html>

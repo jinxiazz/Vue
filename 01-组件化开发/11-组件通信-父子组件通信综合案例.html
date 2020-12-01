@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <test :number1="num1" :number2="num2"
+          @num1change="num1Change"
+          @num2change="num2Change"></test>
+</div>
+
+<template id="cpn">
+    <div>
+        <h1>data：{{number1}}</h1>
+        <h1>props：{{tNumber1}}</h1>
+        <input type="text" :value="tNumber1" @input="num1Input">
+        <h1>data：{{number2}}</h1>
+        <h1>props：{{tNumber2}}</h1>
+        <input type="text" :value="tNumber2" @input="num2Input">
+    </div>
+</template>
+
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    /*
+    * 需求：watch也可以实现哟
+    *   1、在子组件中改变父组件的num
+    *   2、number2=number1的十倍
+    *   3、number1=number2的十分之一
+    * */
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            num1:1,
+            num2:0
+        },
+        methods: {
+          num1Change(value){
+              this.num1=parseFloat(value);
+          },
+          num2Change(value){
+              this.num2=parseFloat(value);
+          }
+        },
+        components:{
+            test:{
+                template:"#cpn",
+                props:{
+                    number1:Number,
+                    number2:Number
+                },
+                data(){
+                    return {
+                        tNumber1:this.number1,
+                        tNumber2:this.number2
+                    }
+                },
+                methods:{
+                    num1Input(event){
+                        //1、将input的value值赋值给tNumber
+                        this.tNumber1=event.target.value||0;
+                        //2、发送事件给父组件
+                        this.$emit("num1change",this.tNumber1);
+                        //3、同时修改number2的值
+                        this.tNumber2=this.tNumber1*100;
+                        this.$emit("num2change",this.tNumber2);
+                    },
+                    num2Input(event){
+                        this.tNumber2=event.target.value||0;
+                        this.$emit("num2change",this.tNumber2);
+                        this.tNumber1=this.tNumber2/100;
+                        this.$emit("num1change",this.tNumber1);
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

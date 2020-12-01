@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <test2></test2>
+    </div>
+    <script src="../lib/vue-2.4.0.js"></script>
+    <script>
+        //1、创建第一个组件构造器对象  子组件
+        const test1=Vue.extend({
+            template: `
+                <h1>第一个组件</h1>
+            `
+        });
+        //2、创建第二个组件构造器对象 父组件
+        const test2=Vue.extend({
+            template: `
+            <div>
+                <h2>第二个组件</h2>
+                <test1></test1>
+            </div>
+            `,
+            components: {
+                test1:test1
+            }
+        });
+        
+        //root 根组件
+        const vue=new Vue({
+            el:"#app",
+            date:{
+                message:"你好！！"
+            },
+            components: {//局部组件：只能在当前vue实例中使用  常用
+                //组件标签名：组件构造对象
+                test2:test2,
+                test1:test1
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    <test1 :tList="list" :tMessage="message"></test1>-->
+    <!--现阶段无法识别驼峰命名 注：在使用是应把驼峰使用-分割即可-->
+    <test1 :t-list="list" :t-message="message"></test1>
+</div>
+<template id="test1">
+    <div>
+        <p>{{tList}}</p>
+        <h1>{{tMessage}}</h1>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    //父传子：props
+    const test1={
+        template:"#test1",
+        props:{
+           tList:{
+               type:Object,
+               default() {
+                   return {};
+               }
+           },
+           tMessage:{
+              type:String,
+              default:"这是一个默认值"
+           }
+        },
+        data(){
+            return {}
+        }
+    }
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！",
+            list:{
+                name:"coder",
+                age:18
+            }
+        },
+        components:{
+            test1
+        }
+    })
+</script>
+</body>
+</html>

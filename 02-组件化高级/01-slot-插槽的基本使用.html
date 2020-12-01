@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+    <cpn><p>哈哈哈</p></cpn>
+    <cpn>
+        <p>呵呵呵</p>
+        <p>嘻嘻嘻</p>
+    </cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+</div>
+<template id="cpn">
+    <div>
+        <h1>我是cpn里面的h1</h1>
+        <p>今天学习slot</p>
+        <!--
+        slot基本使用：  同一个组件 但组件中的内容不一致时可以使用插槽  提高了组件的复用性 高可用
+            1、不确定的位置放上slot插槽标签，然后在组件去定义元素进行替换
+            2、插槽标签可以有默认值，没有替换元素时显示默认值
+            3、如果有多个值，同时放在组件中进行替换时，会一起作为替换元素
+        -->
+        <slot><button>这是插槽的默认值</button></slot>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！"
+        },
+        components:{
+            cpn:{
+                template:"#cpn",
+            }
+        }
+    })
+</script>
+</body>
+</html>

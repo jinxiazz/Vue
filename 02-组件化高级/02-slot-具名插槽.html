@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn>
+        <span slot="center">替换中间</span>
+        <button slot="left">替换左边</button>
+        <i slot="right">替换右边</i>
+        <em>替换</em>
+    </cpn>
+</div>
+<template id="cpn">
+    <div>
+        <!--
+        具名插槽定义：
+            1、给插槽定义name名字
+            2、在使用组件时可以在替换的元素中指定要替换的插槽  指定插槽 slot="name"
+        -->
+        <slot name="left"><span>左边</span></slot>
+        <slot name="center"><span>中间</span></slot>
+        <slot name="right"><span>右边</span></slot>
+        <slot>不指定名字时替换没有名字的插槽</slot>
+    </div>
+</template>
+<script src="../lib/vue-2.4.0.js"></script>
+<script>
+    const vue=new Vue({
+        el:"#app",
+        data:{
+            message:"你好！！"
+        },
+        components:{
+            cpn:{
+                template:"#cpn"
+            }
+        }
+    })
+</script>
+</body>
+</html>
