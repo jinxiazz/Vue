@@ -96,9 +96,14 @@ url和组件的映射关系：
     hook：钩子
 
 路由独享守卫/组件内守卫    官网学习...
+组件内守卫：beforeRouteLeave(to,from,next){} 可以记录离开后的上一次path
 
 keep-alive和vue-router：
 keep-alive：是vue内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染
+    函数：activated/deactivated  组件活跃以及不活跃时执行，只在使用keep-alive的时候有效
+    属性：
+        include：字符串或者是正则，只有匹配到的组件会缓存
+        exclude：字符串或者是正则，匹配到的组件不会被缓存
 router-view：也是一个组件，如果被包在keep-alive中，所有路径匹配到的视图组件都会被缓存
 
 

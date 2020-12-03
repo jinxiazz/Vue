@@ -15,6 +15,11 @@ const About = ()=>import('../components/About');
 const User = ()=>import('../components/User');
 const Profile = ()=>import('../components/Profile');
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 //注册路由
 Vue.use(VueRouter);
 
@@ -32,10 +37,10 @@ const routes = [
       title: '首页'
     },
     children: [
-      {
-        path: '',
-        redirect: 'news'
-      },
+      // {
+      //   path: '',
+      //   redirect: 'news'
+      // },
       {
         path: 'news',
         component: HomeNews

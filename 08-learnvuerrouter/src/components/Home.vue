@@ -10,7 +10,32 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  data(){
+    return{
+      path:"/home/news",
+    }
+  },
+  created() {//创建
+    console.log("created");
+  },
+  destroyed() {//销毁
+    console.log("destroyed");
+  },
+  activated() {
+    console.log(this.path)
+    this.$router.push(this.path)
+    console.log("当前活跃的")
+  },
+  deactivated() {
+    console.log("不活跃的")
+  },
+  beforeRouteLeave(to,from,next){
+    console.log("组件内导航，记录上一次的path");
+    console.log(this.$route.path);
+    this.path=this.$route.path;
+    next();
+  }
 }
 </script>
 

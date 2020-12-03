@@ -13,7 +13,9 @@
 <!--    <router-link :to="{path:'/profile',query:{userName:'admin',age:123,sex:'man'}}" tag="button" replace>档案</router-link>-->
     <button @click="userClick">用户</button>
     <button @click="profileClick">档案</button>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
