@@ -32,7 +32,7 @@ export default {
   },
   data(){
     return{
-      // isActive:false1
+      // isActive:false
     }
   },
   methods:{
