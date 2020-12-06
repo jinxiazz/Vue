@@ -1,6 +1,6 @@
 <template>
   <div id="tab-bar">
-    <solt></solt>
+    <slot></slot>
   </div>
 </template>
 
@@ -21,13 +21,4 @@
     box-shadow: 0 -2px 1px rgba(100,100,100,.1);
   }
 
-  .tab-bar-item{
-    flex: 1;
-    height: 49px;
-    text-align: center;
-  }
-
-  .tab-bar-item img{
-    width: 24px;
-  }
 </style>
