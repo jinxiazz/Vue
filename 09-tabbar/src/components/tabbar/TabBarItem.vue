@@ -27,7 +27,7 @@ export default {
       return this.$route.path.indexOf(this.path)!==-1;
     },
     txtColors(){
-       return this.isActive===true?{color:this.txtColor}:{}
+       return this.isActive?{color:this.txtColor}:{}
     }
   },
   data(){
