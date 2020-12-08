@@ -1,6 +1,6 @@
 Promise 是异步编程的一种解决方案 可以优雅的解决回调地狱  ES6
     一般在有异步操作时就会使用promise进行封装
-    格式：
+    格式1：
     1、执行new Promise时 去执行了构造函数创建Promise对象(1、声明了一些基本参数 2、执行了传入的函数)
     在执行传入的函数时会自动传入两个参数  resolve和reject  他们两个都是函数,只能传入一个值
     new Promise((resolve, reject) => {
@@ -11,3 +11,14 @@ Promise 是异步编程的一种解决方案 可以优雅的解决回调地狱  
     }).catch((err)=>{
         5、执行请求失败后的逻辑，一般会传入错误信息，对错误信息进行处理
     })
+
+    格式2：
+    new Promise((resolve, reject) => {
+      //发送请求
+    }).then(fn1,fn2);
+    then里面可以传入两个函数 fn1是请求成功的函数，fn2是请求失败的函数
+
+Promise异步三种状态：
+    pending：等待状态，比如正在进行网络请求
+    fulfill：满足状态，请求成功回调resolve()以及then()
+    reject：拒绝状态，请求失败回调reject()以及catch()
