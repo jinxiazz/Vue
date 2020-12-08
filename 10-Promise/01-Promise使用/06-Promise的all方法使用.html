@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        Promise.all([
+            new Promise((resolve, reject) => {
+                setTimeout(()=>{
+                    resolve({key:"请求成功1"})
+                },100)
+            }),
+            new Promise((resolve, reject) => {
+                setTimeout(()=>{
+                    resolve({key:"请求成功2"})
+                })
+            })
+        ]).then(result=>{
+            console.log(result)
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

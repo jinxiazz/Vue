@@ -14,10 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c37cb916-c817-4dd6-b09a-c5b0922fbeb2" name="Default Changelist" comment="11">
-      <change afterPath="$PROJECT_DIR$/10-Promise/01-Promise使用/02-Promise另外一种写法.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/10-Promise/01-Promise使用/03-Promise链式调用1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/10-Promise/01-Promise使用/04-Promise链式调用2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/10-Promise/01-Promise使用/05-Promise链式调用3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10-Promise/01-Promise使用/06-Promise的all方法使用.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes/04-promise" beforeDir="false" afterPath="$PROJECT_DIR$/notes/04-promise" afterDir="false" />
     </list>

@@ -12,11 +12,24 @@ Promise 是异步编程的一种解决方案 可以优雅的解决回调地狱  
         5、执行请求失败后的逻辑，一般会传入错误信息，对错误信息进行处理
     })
 
-    格式2：
+    格式2： 简写看当天的代码04和05
     new Promise((resolve, reject) => {
       //发送请求
     }).then(fn1,fn2);
     then里面可以传入两个函数 fn1是请求成功的函数，fn2是请求失败的函数
+
+    格式3：一次性处理多个异步请求
+    Promise.all([
+      new Promise((resolve, reject) => {
+         第一次请求
+      }),
+      new Promise((resolve, reject) => {
+         第二次请求
+      })...
+      提示：all方法里面传入一个数组(可遍历)，数组中可以放多个promise
+    ]).then(result=>{
+         当all方法里面的所有请求都成功是执行then里面的函数  result用于接收多个请求成功后返回的数据
+    })
 
 Promise异步三种状态：
     pending：等待状态，比如正在进行网络请求
